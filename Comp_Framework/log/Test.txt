@@ -1,0 +1,50 @@
+Running Simple_mapping.rb...
+started :2016-11-08 15:30:25 +0530
+... forTest.ctrl
+load sorted source
+load sorted target
+Loop through source ,checking for target ...
+------------
+ 
+failed mapping source record 3 to target record
+-------------------------------------------------
+ 
+Source_record :
+ 14	t
+ target_record :
+ 14	c
+ 
+t[1] == s[1]	#name:c != t
+ 
+------------
+ 
+failed mapping source record 4 to target record
+-------------------------------------------------
+ 
+Source_record :
+ 15	u
+ target_record :
+ 15	e
+ 
+t[1] == s[1]	#name:e != u
+ 
+ 
+Summary
+=================================================
+processed Test.ctrl :C:/cygwin/home/KV/data/src_patient.txt with 7 source_records
+processed Test.ctrl : C:/cygwin/home/KV/data/trgt_patient.txt with 6 target records 
+ 
+Mismatch in record count : 	    -1
+ 
+Missing source records : 	     0
+ 
+Missing target records : 	     0
+ 
+	Mapping                    		   failed
+---------------             		--------------
+ 1.v_natural_key               		        0
+ 2.name                        		        2
+                            			===========
+Totals                      		        2
+ 
+completed:2016-11-08 15:30:26 +0530

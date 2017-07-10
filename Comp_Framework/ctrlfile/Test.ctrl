@@ -1,0 +1,13 @@
+#This is control file for patient from landing to stage
+source_sql:
+Select * from SHIPWRECK
+target_sql:
+source_file|./data/src_patient.txt
+target_file|./data/trgt_patient.txt
+source_delim:	
+target_delim:	
+keys:
+t[0] == s[0]
+mappings:
+t[0] == s[0]	#v_natural_key
+t[1] == s[1]	#name
