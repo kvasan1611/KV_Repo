@@ -1,5 +1,5 @@
 Running Simple_mapping.rb...
-started :2016-11-08 15:30:25 +0530
+started :2017-07-13 00:23:27 +0530
 ... forTest.ctrl
 load sorted source
 load sorted target
@@ -47,4 +47,4 @@ Missing target records : 	     0
                             			===========
 Totals                      		        2
  
-completed:2016-11-08 15:30:26 +0530
+completed:2017-07-13 00:23:27 +0530

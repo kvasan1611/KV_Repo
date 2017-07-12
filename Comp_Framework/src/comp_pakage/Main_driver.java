@@ -13,6 +13,7 @@ import org.h2.*;
 
 import com.relevantcodes.extentreports.*;
 
+
 /**
  * @author KV
  *
@@ -26,8 +27,7 @@ public class Main_driver {
 		// TODO Auto-generated method stub
 	try
 	{
-
-		//ExtentReports extent = new ExtentReports("./report/test.html", true);
+		ExtentReports extent = new ExtentReports("./report/test.html",true);
 		
 		// creates a toggle for the given test, adds all log events under it    
                
@@ -45,7 +45,7 @@ public class Main_driver {
 				String sFilePath = "./ctrlfile/";
 				String slogFileName = sFileName.replace(".ctrl",".txt");
 
-				//ExtentTest test = extent.startTest("Test No."+ i, "Comparison Results");
+				ExtentTest test = extent.startTest("Test No."+ i, "Comparison Results");
 				
 				String sSourceQuery = Util_lib.getText(sCtrlFilePath,"source_sql:","target_sql:");
 				//String sTargetQuery = Util_lib.getText(sCtrlFilePath,"target_sql:","source_sql:");
@@ -65,13 +65,6 @@ public class Main_driver {
 				//Util_lib.SaveToFile(strTgtResultSet,"C:\\control\\data\\",sTgtFileName);
 				
 				//Execute Ruby Script
-				/*
-				Process p = Runtime.getRuntime().exec(new String[]{"C:\\cygwin\\\bin\\bash.exe"
-						,"--login","-i","-c"
-						,"./simple_mapping-manual.rb "+sTgtFileName+" >"+slogFileName});
-				
-				p.waitFor();
-				*/
 				
 				ScriptingContainer container = new ScriptingContainer();
 				String[] sCtrl = new String[] {sFileName};
@@ -82,7 +75,7 @@ public class Main_driver {
 				Util_lib.SaveToFile(slog,"./log/", slogFileName);
 				
 				//Analyze log File
-				String sLogFile = "./log/"+slogFileName;
+				String sLogFile = "C:/Users/KV/git/KV_Repo/Comp_Framework/log/"+slogFileName;
 				BufferedReader br = new BufferedReader(new FileReader(sLogFile));
 				
 				String slogCurrentLine;
@@ -94,7 +87,7 @@ public class Main_driver {
 				
 				while ((slogCurrentLine = br.readLine()) != null)
 				{
-					if (slogCurrentLine.trim().contains("Failed mapping source record"))
+					if (slogCurrentLine.trim().contains("failed mapping source record"))
 					{
 						sFailFlag = true;
 						intCntMismatch = intCntMismatch+1; 
@@ -149,17 +142,18 @@ public class Main_driver {
 				if(sFailFlag)
 				{
 					System.out.println("Observed"+intCntMismatch+" Mapping Mismatches in data");
-					//test.log(LogStatus.FAIL, "Data Mismatch: "+intCntMismatch+" Log File: <a herf=\""+sLogFile+"\">Click here</a>");
+					test.log(LogStatus.FAIL,"Data Mismatch: "+intCntMismatch+" : For Log File: <a href=\""+sLogFile+"\">Click here</a>");
 					intCntMismatch = 0;
 					sFailFlag = false;
+					
 				}
 				else
 				{
-					//test.log(LogStatus.PASS, "Test Run Success Log File: <a herf=\""+sLogFile+"\">Click here</a>");
+					test.log(LogStatus.PASS,"Test Run Success Log File: <a href=\""+sLogFile+"\">Click here</a>");
 				}
 				
-				//extent.endTest(test);
-				//extent.flush();
+				extent.endTest(test);
+				extent.flush();
 			}
 			
 		}
@@ -169,4 +163,6 @@ public class Main_driver {
 			e.printStackTrace();
 		}
 	}
+
+	
 }
